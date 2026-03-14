@@ -15,6 +15,14 @@ const fadeLeft = {
 };
 
 export default function Hero() {
+  // Smooth scroll to the Contact section
+  const handleQuoteClick = () => {
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="hero" id="home">
       <motion.div
@@ -32,7 +40,7 @@ export default function Hero() {
         >
           <span className="hero-badge">
             <span className="blink-dot"></span>
-            Serving Pune Since 2011
+            Serving Clients Since 2011
           </span>
 
           <h1 className="hero-title">
@@ -42,26 +50,38 @@ export default function Hero() {
           </h1>
 
           <p className="hero-sub">
-            Premium laundry services for Hotels, Hospitals & Corporates across Pune. 
-            Experience quality, reliability and efficiency with every wash.
+            Premium laundry services for Hotels, Hospitals &amp; Corporates
+            across Pune. Experience quality, reliability and efficiency with
+            every wash.
           </p>
 
+          {/* ---------- POINTS ---------- */}
           <ul className="hero-points">
             <li>
-              <FaCircleCheck className="icon" /> ISO Certified Facility
+              <FaCircleCheck className="icon" />
+              <span>ISO Certified Facility</span>
             </li>
             <li>
-              <FaCircleCheck className="icon" /> Same‑Day Service Available
+              <FaCircleCheck className="icon" />
+              <span>Same‑Day Service Available</span>
             </li>
             <li>
-              <FaCircleCheck className="icon" /> 14+ Years of Excellence
+              <FaCircleCheck className="icon" />
+              <span>14+ Years of Excellence</span>
             </li>
           </ul>
 
+          {/* ---------- BUTTONS ---------- */}
           <div className="hero-btns">
-            <button className="btn-orange">Get a Quote →</button>
-            <button className="btn-outline">
-              <FaPhone /> Call Now
+            <button className="btn-orange" onClick={handleQuoteClick}>
+              Get a Quote →
+            </button>
+            <button
+              className="btn-outline"
+              onClick={() => (window.location.href = "tel:+918047852213")}
+            >
+              <FaPhone style={{ marginRight: "6px" }} />
+              Call Now
             </button>
           </div>
         </motion.div>
@@ -73,6 +93,7 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
         >
           <img src={heroImg} alt="Neatly folded laundry" />
+
           <motion.div
             className="floating-card top"
             initial={{ opacity: 0, y: -20 }}

@@ -1,7 +1,7 @@
 .services {
   background: var(--bg-light);
   color: var(--text-dark);
-  padding: 3.5rem 1rem;              /* smaller height */
+  padding: 3.5rem 1rem;
   display: flex;
   justify-content: center;
   overflow-x: hidden;
@@ -16,27 +16,27 @@
 /* ---------- HEADINGS ---------- */
 .services h2 {
   color: var(--primary);
-  font-size: 1.8rem;
+  font-size: 1.9rem; /* slightly larger for better visibility */
   font-weight: 700;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
 }
 
 .services-sub {
-  font-size: 0.95rem;
-  color: #555;
-  margin-bottom: 2rem;
+  font-size: 1.05rem; /* slightly larger subtitle */
+  color: #444;
+  margin-bottom: 2.2rem;
 }
 
 /* ---------- GRID LAYOUT ---------- */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);   /* fixed 3 columns desktop */
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem 2.5rem;
   justify-items: center;
   align-items: start;
 }
 
-/* ---------- EACH SERVICE (no box) ---------- */
+/* ---------- EACH SERVICE ---------- */
 .service-item {
   width: 100%;
   max-width: 320px;
@@ -44,84 +44,113 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.4s ease;
   word-wrap: break-word;
   white-space: normal;
 }
 
 .service-item:hover {
-  transform: translateY(-5px) scale(1.03); /* small pop only */
+  transform: translateY(-5px) scale(1.03);
 }
 
-/* ICON */
+/* ---------- ICON ---------- */
 .service-icon {
-  font-size: 2.2rem;
+  font-size: 2.3rem;
   color: var(--accent);
   margin-bottom: 1rem;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s ease, filter 0.4s ease;
 }
 
+/* 🔹 slight tilt only (no spin) */
 .service-item:hover .service-icon {
   transform: rotate(15deg) scale(1.1);
+  filter: drop-shadow(0 0 6px rgba(245,130,32,0.4));
 }
 
-/* TITLE */
+/* ---------- TITLE ---------- */
 .service-item h3 {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
   color: var(--primary);
 }
 
-/* DESCRIPTION */
+/* ---------- DESCRIPTION ---------- */
 .service-item p {
-  font-size: 0.95rem;
-  color: #444;
-  line-height: 1.6;
+  font-size: 1.05rem;
+  color: #333;
+  line-height: 1.8;
   margin: 0;
   max-width: 90%;
   word-break: break-word;
 }
 
-/* ---------- RESPONSIVE ---------- */
+/* ---------- RESPONSIVE (TABLET) ---------- */
 @media (max-width: 1024px) {
   .services-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/* ---------- MOBILE POP‑ON‑SCROLL ---------- */
 @media (max-width: 700px) {
   .services {
     padding: 3rem 1rem;
   }
 
   .services-grid {
-    grid-template-columns: 1fr; /* 1 column on mobile */
+    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.8rem;
   }
 
+  /* Base state (slightly small/faded) */
   .service-item {
-    max-width: 280px;
+    max-width: 320px;
+    opacity: 0.6;
+    transform: scale(0.94);
+    transition: all 0.5s ease;
   }
 
-  .service-icon {
-    font-size: 2rem;
-  }
-}
-
-@media (max-width: 500px) {
-  .services h2 {
-    font-size: 1.6rem;
+  /* ✅ Active card (centered in view) pops up */
+  .service-item.active {
+    opacity: 1;
+    transform: scale(1.1);
   }
 
-  .services-sub {
-    font-size: 0.9rem;
+  /* Keep existing tilt only, no spin */
+  .service-item.active .service-icon {
+    transform: rotate(10deg) scale(1.1);
+    filter: drop-shadow(0 0 6px rgba(245,130,32,0.4));
   }
 
   .service-item h3 {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
   .service-item p {
-    font-size: 0.9rem;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+}
+
+/* ---------- SMALL MOBILE ---------- */
+@media (max-width: 500px) {
+  .services h2 {
+    font-size: 1.7rem;
+  }
+
+  .services-sub {
+    font-size: 0.95rem;
+  }
+
+  .service-item h3 {
+    font-size: 1.05rem;
+  }
+
+  .service-item p {
+    font-size: 0.95rem;
   }
 }

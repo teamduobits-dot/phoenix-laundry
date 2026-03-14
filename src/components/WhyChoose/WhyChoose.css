@@ -1,135 +1,164 @@
 .why {
   background: var(--primary);
   color: #fff;
-  padding: 3rem 1rem;              /* 🔹 reduced vertical space */
+  padding: 3.5rem 1rem;
   display: flex;
   justify-content: center;
   overflow-x: hidden;
 }
 
 .why-inner {
-  max-width: 1100px;               /* slightly narrower for compact view */
+  max-width: 1300px; /* fit 4 cards per row */
   text-align: center;
   width: 100%;
 }
 
 .why h2 {
-  font-size: 1.8rem;               /* 🔹 smaller heading */
+  font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.6rem;
+  color: #fff;
 }
 
 .why-sub {
-  font-size: 0.95rem;              /* 🔹 smaller subtitle */
+  font-size: 1rem;
   color: #e6e6e6;
-  margin-bottom: 2rem;             /* less gap below subtitle */
+  margin-bottom: 2.4rem;
 }
 
-/* grid layout */
+/* ---------- GRID LAYOUT : 1 × 4 ---------- */
 .why-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.8rem;                     /* tighter spacing */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
   justify-items: center;
   align-items: stretch;
 }
 
-/* single item area */
+/* ---------- CARD ---------- */
 .why-item {
+  background: transparent;
   width: 100%;
-  max-width: 250px;
-  min-height: 220px;               /* 🔹smaller cards */
+  max-width: 270px;
+  min-height: 240px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 1.5rem 1rem;
+  padding: 1.6rem 1.2rem;
   text-align: center;
   border-radius: 10px;
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease, opacity 0.4s ease;
   box-sizing: border-box;
 }
 
 .why-item:hover {
-  transform: translateY(-4px) scale(1.03);
+  transform: translateY(-5px);
 }
 
-/* icon area */
+/* ---------- ICON ---------- */
 .why-icon-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 0.7rem;
-  min-height: 40px;
+  margin-bottom: 1rem;
+  min-height: 42px;
 }
 
-/* icon style and animation */
 .why-icon {
-  font-size: 2.1rem;               /* 🔹smaller icon */
+  font-size: 2.2rem;
   color: var(--accent);
-  transition: transform 0.6s ease, filter 0.35s ease;
+  transition: transform 0.6s ease, filter 0.4s ease;
 }
 
+/* ✅ spin + scale on hover (desktop) */
 .why-item:hover .why-icon {
-  transform: rotate(360deg) scale(1.12);
-  filter: drop-shadow(0 0 10px rgba(245,130,32,0.6));
+  transform: rotate(360deg) scale(1.15);
+  filter: drop-shadow(0 0 8px rgba(245, 130, 32, 0.5));
 }
 
-/* text styles */
+/* ---------- TEXT ---------- */
 .why-item h3 {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
   color: #fff;
-  min-height: 35px;
 }
 
 .why-item p {
-  font-size: 0.93rem;
-  color: #e0e0e0;
-  line-height: 1.5;
-  word-wrap: break-word;
-  white-space: normal;
+  font-size: 1rem;
+  color: #f1f1f1;
+  line-height: 1.7;
   margin: 0;
-  flex: 1;
+  max-width: 260px;
 }
 
-/* Responsive tweaks */
-@media (max-width: 900px) {
-  .why {
-    padding: 2.5rem 1rem;
-  }
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1000px) {
   .why-inner {
-    max-width: 900px;
+    max-width: 950px;
   }
-  .why-grid {
-    gap: 1.5rem;
-  }
-  .why-item {
-    max-width: 230px;
-    min-height: 200px;
-    padding: 1.3rem 0.9rem;
-  }
-  .why-icon {
-    font-size: 1.9rem;
-  }
-}
 
-@media (max-width: 500px) {
-  .why {
-    padding: 2.5rem 0.8rem;
+  .why-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 2.5rem;
   }
+
   .why-item {
     max-width: 300px;
-    min-height: auto;
+    min-height: 220px;
   }
-  .why-icon {
-    font-size: 1.8rem;
+}
+
+/* ---------- MOBILE POP‑ON‑SCROLL + ICON SPIN ---------- */
+@media (max-width: 768px) {
+  .why {
+    padding: 3rem 0.8rem;
   }
-  .why h2 {
-    font-size: 1.6rem;
+
+  .why-grid {
+    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.8rem;
   }
-  .why-sub {
-    font-size: 0.9rem;
+
+  .why-item {
+    max-width: 320px;
+    padding: 1.4rem 1rem;
+    opacity: 0.6;
+    transform: scale(0.94);
+    transition: all 0.5s ease;
+  }
+
+  /* ✅ pop in effect */
+  .why-item.active {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  /* 🔹 icon spins automatically when card becomes active */
+  .why-item.active .why-icon {
+    animation: spinOnce 0.8s ease-out;
+  }
+
+  @keyframes spinOnce {
+    from {
+      transform: rotate(0deg) scale(1);
+    }
+    to {
+      transform: rotate(360deg) scale(1.15);
+    }
+  }
+
+  .why-item h3 {
+    font-size: 1.05rem;
+  }
+
+  .why-item p {
+    font-size: 0.96rem;
+    line-height: 1.65;
+    max-width: 300px;
   }
 }

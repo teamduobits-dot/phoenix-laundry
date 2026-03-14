@@ -30,10 +30,14 @@ export default function Contact() {
               <FaEnvelope className="contact-icon" />
               <p>phoenixlaundrys@gmail.com</p>
             </div>
+
+            {/* ✅ Updated map coordinates */}
             <iframe
               title="Phoenix Laundry Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.923536985398!2d73.82736427503039!3d18.62641836678261!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c8b8c2c1d8cd%3A0x67a54bdb46d6a3ad!2sChikhli%2C%20Pune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1686903010000!5m2!1sen!2sin"
+              src="https://www.google.com/maps?q=18.6768830,73.7933046&z=15&output=embed"
               loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>
 

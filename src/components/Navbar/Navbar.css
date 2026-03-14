@@ -9,6 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: transform 0.35s ease, opacity 0.35s ease; /* ✅ smooth hide/show */
 }
 
 .nav-container {
@@ -22,6 +23,23 @@
   box-sizing: border-box;
 }
 
+/* ---------- HIDE NAVBAR (mobile scroll down) ---------- */
+.nav-hide {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+/* optional fixed positioning on mobile - keeps it smooth and visible */
+@media (max-width: 900px) {
+  .navbar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+  }
+}
+
+/* ---------- LOGO ---------- */
 .nav-left {
   display: flex;
   align-items: center;
@@ -117,7 +135,7 @@
 .close-btn {
   position: absolute;
   top: 1rem;
-  right: 1rem;           /* ✅ pinned to right side of panel */
+  right: 1rem;
   font-size: 1.6rem;
   color: var(--primary);
   cursor: pointer;

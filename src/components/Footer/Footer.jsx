@@ -46,8 +46,7 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <p>
-          © {new Date().getFullYear()} Phoenix Laundry. All rights reserved. |
-          Designed & Developed by DuoBits Software Solutions
+          © {new Date().getFullYear()} Phoenix Laundry. All rights reserved. 
         </p>
       </div>
     </footer>

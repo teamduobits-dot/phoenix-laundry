@@ -5,18 +5,34 @@ import { FaBars, FaTimes } from "react-icons/fa";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hideNav, setHideNav] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  // ➤ Hide / show navbar when scrolling (mobile only)
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      if (window.innerWidth <= 900) {
+        if (currentY > lastScrollY && currentY > 100) {
+          setHideNav(true); // scrolling down → hide
+        } else {
+          setHideNav(false); // scrolling up → show
+        }
+      }
+      setLastScrollY(currentY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   // Prevent background scroll when menu is open
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = menuOpen ? "hidden" : "";
   }, [menuOpen]);
 
   return (
-    <header className="navbar">
+    <header className={`navbar ${hideNav ? "nav-hide" : ""}`}>
       <div className="nav-container">
         {/* Logo */}
         <div className="nav-left">
